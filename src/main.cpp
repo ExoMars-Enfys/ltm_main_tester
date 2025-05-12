@@ -8,7 +8,7 @@
 void setup()
 {
   Serial.begin(115200);
-  HWSERIAL.begin(115200);
+  HWSERIAL.begin(115200, SERIAL_8O1);
 }
 
 void loop()
@@ -20,13 +20,13 @@ void loop()
     incomingByte = Serial.read();
     Serial.print("USB received: ");
     Serial.println(incomingByte, DEC);
-    HWSERIAL.println(incomingByte, DEC);
+    HWSERIAL.write(incomingByte);
   }
   if (HWSERIAL.available() > 0)
   {
     incomingByte = HWSERIAL.read();
     Serial.print("UART received: ");
     Serial.println(incomingByte, DEC);
-    HWSERIAL.println(incomingByte, DEC);
+    HWSERIAL.write(incomingByte);
   }
 }

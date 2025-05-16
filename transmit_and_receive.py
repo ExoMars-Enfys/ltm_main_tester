@@ -53,7 +53,7 @@ def initialise_teensy(com_port: str) -> serial.Serial:
 
 def main():
     rs_485_com = "COM10"  # Example COM port for RS485, change as needed
-    teensy_com = "COM5"  # Teensy COM port, change as needed
+    teensy_com = "COM5"  # Example Teensy COM port, change as needed
 
     transmit_text = b"12345"
 
@@ -61,15 +61,15 @@ def main():
     teensy_port = initialise_teensy(teensy_com)
 
     while True:
-        print("\n Select serial command:\n 1. Transmit\n 2. Receive\n 3. Exit\n")
+        print("\n Select serial command:\n 1. LTM Receiving\n 2. LTM Transmit\n 3. Exit\n")
         choice = input("Enter your choice (1/2/3): ")
         if choice == "1":
-            print("Transmitting...")
+            print("LTM Receiving...")
             print(f"Writing to RS485 port: {transmit_text}")
-            rs485_port.write(transmit_text)  # Example data to send, change as needed
+            rs485_port.write(transmit_text)
         elif choice == "2":
-            print("Receiving...")
-            teensy_port.write(transmit_text)  # Example data to send to Teensy, change as needed
+            print("LTM Transmitting...")
+            teensy_port.write(transmit_text)
             read_rs485(rs485_port)
         elif choice == "3":
             print("Exiting...")
